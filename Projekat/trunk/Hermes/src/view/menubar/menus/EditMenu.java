@@ -1,0 +1,221 @@
+package view.menubar.menus;
+
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JMenu;
+import javax.swing.KeyStroke;
+
+import listeners.CommandActionListener;
+import model.ActiveState;
+import model.ApplicationModel;
+import model.ApplicationState;
+import model.EditState;
+import model.TableColumnModel;
+import model.command.DeleteCommand;
+import view.Form;
+import view.MenuItem;
+import view.Table;
+import view.ViewComponent;
+/**
+ * Klasa za definisanje menija za rad sa tabelama.
+ * 
+ * @author Aleksej Mutić
+ * @version 1.0
+ */
+public class EditMenu extends JMenu implements Menu{
+	private MenuItem nextMenuItem = null;
+	private MenuItem previousMenuItem = null;
+	private MenuItem firstMenuItem = null;
+	private MenuItem lastMenuItem = null;
+	private MenuItem newMenuItem = null;
+	private MenuItem editMenuItem = null;
+	private MenuItem deleteMenuItem = null;
+	private MenuItem acceptMenuItem = null;
+	private MenuItem cancelMenuItem = null;
+	private MenuItem reportMenuItem = null;
+	private ApplicationModel applicationModel;
+	
+	public EditMenu(Table table, ApplicationModel applicationModel, ViewComponent form) {
+		super("Pretraga");
+		
+		this.applicationModel = applicationModel;
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+		
+		nextMenuItem = new MenuItem("Sljedeće");
+		Image nextIcon = toolkit.getImage("src/icons/new.png");
+		nextIcon = nextIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		nextMenuItem.setIcon(new ImageIcon(nextIcon));
+		nextMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_KP_RIGHT, KeyEvent.CTRL_DOWN_MASK));
+		nextMenuItem.setMnemonic(KeyEvent.VK_KP_RIGHT);
+		nextMenuItem.addActionListener(e -> {
+            if (table != null) table.selectNextRow();
+        });
+		add(nextMenuItem);
+		
+		previousMenuItem = new MenuItem("Prethodno");
+		Image previousIcon = toolkit.getImage("src/icons/previous.png");
+		previousIcon = previousIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		previousMenuItem.setIcon(new ImageIcon(previousIcon));
+		previousMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_KP_LEFT, KeyEvent.CTRL_DOWN_MASK));
+		previousMenuItem.setMnemonic(KeyEvent.VK_KP_LEFT);
+		previousMenuItem.addActionListener(e -> {
+            if (table != null) table.selectPreviousRow();
+        });
+		add(previousMenuItem);
+		
+		firstMenuItem = new MenuItem("Prvo");
+		Image firstIcon = toolkit.getImage("src/icons/first.png");
+		firstIcon = firstIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		firstMenuItem.setIcon(new ImageIcon(firstIcon));
+		firstMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_KP_UP, KeyEvent.CTRL_DOWN_MASK));
+		firstMenuItem.setMnemonic(KeyEvent.VK_KP_UP);
+		firstMenuItem.addActionListener(e -> {
+            if (table != null) table.selectPreviousRow();
+        });
+		add(firstMenuItem);
+		
+		lastMenuItem = new MenuItem("Posljednje");
+		Image lastIcon = toolkit.getImage("src/icons/last.png");
+		lastIcon = lastIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		lastMenuItem.setIcon(new ImageIcon(lastIcon));
+		lastMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_KP_DOWN, KeyEvent.CTRL_DOWN_MASK));
+		lastMenuItem.setMnemonic(KeyEvent.VK_KP_DOWN);
+		lastMenuItem.addActionListener(e -> {
+            if (table != null) table.selectPreviousRow();
+        });
+		add(lastMenuItem);
+		
+		addSeparator();
+		
+		newMenuItem = new MenuItem("Novi zapis");
+		Image newIcon = toolkit.getImage("src/icons/new.png");
+		newIcon = newIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		newMenuItem.setIcon(new ImageIcon(newIcon));
+		newMenuItem.setMnemonic(KeyEvent.VK_N);
+		newMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK));
+	    newMenuItem.addActionListener(e -> {
+	        if (form instanceof Form) {
+	            generateForm((Form) form, table, new ActiveState(applicationModel));
+	        }
+	    });
+		add(newMenuItem);
+		
+		editMenuItem = new MenuItem("Uredi");
+		Image editIcon = toolkit.getImage("src/icons/edit.png");
+		editIcon = editIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		editMenuItem.setIcon(new ImageIcon(editIcon));
+		editMenuItem.setMnemonic(KeyEvent.VK_E);
+		editMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, KeyEvent.CTRL_DOWN_MASK));
+		editMenuItem.addActionListener(e -> {
+	        if (form instanceof Form) {
+	            generateForm((Form) form, table, new EditState(applicationModel));
+	        }
+	    });
+		add(editMenuItem);
+		
+		deleteMenuItem = new MenuItem("Izbriši");
+		Image deleteIcon = toolkit.getImage("src/icons/delete.png");
+		deleteIcon = deleteIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		deleteMenuItem.setIcon(new ImageIcon(deleteIcon));
+		deleteMenuItem.setMnemonic(KeyEvent.VK_DELETE);
+		deleteMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE,KeyEvent.CTRL_DOWN_MASK));
+		deleteMenuItem.addActionListener(new CommandActionListener(new DeleteCommand(applicationModel, table)));
+		add(deleteMenuItem);
+		
+		addSeparator();
+		
+		acceptMenuItem = new MenuItem("Prihvati");
+		Image acceptIcon = toolkit.getImage("src/icons/accept.png");
+		acceptIcon = acceptIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		acceptMenuItem.setIcon(new ImageIcon(acceptIcon));
+		acceptMenuItem.setMnemonic(KeyEvent.VK_ENTER);
+		acceptMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,KeyEvent.CTRL_DOWN_MASK));
+		add(acceptMenuItem);
+		
+		cancelMenuItem = new MenuItem("Otkaži");
+		Image cancelIcon = toolkit.getImage("src/icons/cancel.png");
+		cancelIcon = cancelIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		cancelMenuItem.setIcon(new ImageIcon(cancelIcon));
+		cancelMenuItem.setMnemonic(KeyEvent.VK_ESCAPE);
+		cancelMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,KeyEvent.CTRL_DOWN_MASK));
+		add(cancelMenuItem);
+		
+		addSeparator();
+		
+		reportMenuItem = new MenuItem("Izvještaj");
+		Image reportIcon = toolkit.getImage("src/icons/report.png");
+		reportIcon = reportIcon.getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+		reportMenuItem.setIcon(new ImageIcon(reportIcon));
+		reportMenuItem.setMnemonic(KeyEvent.VK_P);
+		reportMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,KeyEvent.CTRL_DOWN_MASK));
+		add(reportMenuItem);
+	}
+
+	@Override
+	public void idleState() {
+		nextMenuItem.setEnabled(false);
+		previousMenuItem.setEnabled(false);
+		firstMenuItem.setEnabled(false);
+		lastMenuItem.setEnabled(false);
+		newMenuItem.setEnabled(false);
+		editMenuItem.setEnabled(false);
+		deleteMenuItem.setEnabled(false);
+		acceptMenuItem.setEnabled(false);
+		cancelMenuItem.setEnabled(false);
+		reportMenuItem.setEnabled(true);
+	}
+
+	@Override
+	public void activeState() {
+		nextMenuItem.setEnabled(true);
+		previousMenuItem.setEnabled(true);
+		firstMenuItem.setEnabled(true);
+		lastMenuItem.setEnabled(true);
+		newMenuItem.setEnabled(true);
+		editMenuItem.setEnabled(false);
+		deleteMenuItem.setEnabled(false);
+		acceptMenuItem.setEnabled(false);
+		cancelMenuItem.setEnabled(false);
+		reportMenuItem.setEnabled(true);
+	}
+
+	@Override
+	public void editState() {
+		nextMenuItem.setEnabled(true);
+		previousMenuItem.setEnabled(true);
+		firstMenuItem.setEnabled(true);
+		lastMenuItem.setEnabled(true);
+		newMenuItem.setEnabled(true);
+		editMenuItem.setEnabled(true);
+		deleteMenuItem.setEnabled(true);
+		acceptMenuItem.setEnabled(true);
+		cancelMenuItem.setEnabled(true);
+		reportMenuItem.setEnabled(true);
+	}
+	
+	private void generateForm(Form form, Table table, ApplicationState state) {
+	    form.setVisible(true);
+
+	    int rowIndex = table.getCustomTable().getSelectedRowIndex();
+    	List<TableColumnModel> tableColumns = this.applicationModel.getContext().getDataModel().getColumns();
+    	List<Object> tableData = this.applicationModel.getContext().getDataModel().getData().get(rowIndex);
+    	HashMap<String, Object> primaryKeys = new HashMap<String, Object>();
+    	
+    	for (int i=0; i<tableColumns.size(); i++) {
+			if(tableColumns.get(i).isPrimaryKey()){
+				primaryKeys.put((tableColumns.get(i).getColumType()+i), tableData.get(i));
+			}
+		}
+    	
+
+	    form.renderForm(this.applicationModel, state, rowIndex,
+	    		primaryKeys.keySet() != null ? applicationModel.getContext().getDataModel().getRowById(primaryKeys) : null, table);
+	}
+}

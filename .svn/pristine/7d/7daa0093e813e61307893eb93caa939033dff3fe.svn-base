@@ -1,0 +1,44 @@
+Model teritorijalno politicke organizacije
+	Popunjeno:
+	 -Tip regiona
+	 -Drzavno uredjenje
+	 -Region
+	 -Drzava
+	 -Naseljeno mjesto
+	 -Glavni grad
+	 -Opstina
+	 -Mjesna zajednica
+Model unutrasnje organizacije
+	Popunjeno:
+		-Tip slozenog poslovnog sistema
+		-Tip poslovnog sistema
+		-Tip Organizacione jedinice
+		-Poslovni sistem
+		-Izabrani tipovi organizacione jedinice
+		-Organizaciona jedinica
+Kadrovska sluzba:
+	Popunjeno:
+		-Nivo obrazovanja
+		-Katalog zvanja
+		-Školska sprema
+		-Katalog zanimanja
+		-Katalog radnih mjesta
+		-Vrsta radnog odnosa
+		-Registar zaposlenih
+		-Raspored na radna mjesta
+		-Adrese
+		-Raspored na radna mjesta
+-Flota vozila
+	Popunjeno:
+		-Tip vozila
+		-Vozila
+-Kreiranje Posiljke
+	Popunjeno:
+		-Nacin preuzimanja
+		-Nacin placanja
+-Preduzece za transport posiljki
+	Popunjeno:
+		-status deklaracije
+		-tip deklaracije
+		-status posiljke
+		-tip posiljke

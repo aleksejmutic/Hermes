@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes - Često postavljena pitanja</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .faq-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .question {
+            font-weight: bold;
+            margin-top: 20px;
+            color: #2980b9;
+        }
+        .answer {
+            margin-top: 5px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="faq-container">
+        <h1>Često postavljena pitanja - Hermes</h1>
+        
+        <div class="qa">
+            <div class="question">Šta je Hermes?</div>
+            <div class="answer">Hermes je informacioni sistem za upravljanje dostavama, sličan sistemima kao što su DHL, UPS ili FedEx. Koristi se za praćenje, slanje i primanje pošiljki.</div>
+        </div>
+
+        <div class="qa">
+            <div class="question">Kako mogu pratiti svoju pošiljku?</div>
+            <div class="answer">Pošiljku možete pratiti unosom broja za praćenje u aplikaciji Hermes ili na našoj web stranici u odjeljku "Praćenje pošiljke".</div>
+        </div>
+
+        <div class="qa">
+            <div class="question">Kako se registrujem na Hermes platformu?</div>
+            <div class="answer">Registracija se vrši putem web stranice klikom na opciju "Registruj se" i popunjavanjem osnovnih informacija o korisniku i adresi dostave.</div>
+        </div>
+
+        <div class="qa">
+            <div class="question">Koje vrste pošiljki mogu slati preko Hermesa?</div>
+            <div class="answer">Hermes omogućava slanje paketa, pisama, ekspres pošiljki, kao i međunarodnih dostava. Vrsta usluge zavisi od odabrane tarife.</div>
+        </div>
+
+        <div class="qa">
+            <div class="question">Da li Hermes nudi uslugu preuzimanja pošiljki na kućnoj adresi?</div>
+            <div class="answer">Da, korisnici mogu zakazati preuzimanje pošiljke na svojoj adresi putem aplikacije ili web stranice.</div>
+        </div>
+
+        <div class="qa">
+            <div class="question">Kako mogu kontaktirati korisničku podršku?</div>
+            <div class="answer">Korisničku podršku možete kontaktirati putem kontakt forme na web stranici, putem e-maila ili pozivom na broj naveden u sekciji "Kontakt".</div>
+        </div>
+    </div>
+</body>
+</html>

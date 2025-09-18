@@ -1,0 +1,84 @@
+package view.config;
+
+import java.io.InputStream;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+/**
+ * Klasa za čitanje konfiguracionih podataka prozora iz XML config file-a.
+ * 
+ * @author Aleksej Mutić
+ * @version 1.0
+ */
+public class AppConfig {
+
+	private static AppConfig instance;
+
+	private String name;
+	private int width;
+	private int height;
+
+	private static final String XML_PATH = "config.xml";
+
+	private AppConfig() throws Exception {
+		loadConfig(XML_PATH);
+	}
+
+	public static AppConfig getInstance() {
+		try {
+			if (instance == null) {
+				instance = new AppConfig();
+			}
+			return instance;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	private void loadConfig(String xmlFileName) throws Exception {
+		ClassLoader classLoader = getClass().getClassLoader();
+		InputStream xmlStream = classLoader.getResourceAsStream(xmlFileName);
+
+		if (xmlStream == null) {
+			throw new RuntimeException("Configuration file not found: " + xmlFileName);
+		}
+
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document doc = db.parse(xmlStream);
+		doc.getDocumentElement().normalize();
+
+		Element root = doc.getDocumentElement();
+		this.name = getTagValue(root, "name");
+		this.width = Integer.parseInt(getTagValue(root, "width"));
+		this.height = Integer.parseInt(getTagValue(root, "height"));
+	}
+
+	private String getTagValue(Element parent, String tagName) {
+		return parent.getElementsByTagName(tagName).item(0).getTextContent();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	@Override
+	public String toString() {
+		return "AppConfig{" +
+				"name='" + name + '\'' +
+				", width=" + width +
+				", height=" + height +
+				'}';
+	}
+}
