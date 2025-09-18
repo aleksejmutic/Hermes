@@ -22,7 +22,7 @@ The project began with careful documentation using **RUP templates**, followed b
 |------|---------|
 | **SAP PowerDesigner** | UML modeling (use case, class, sequence diagrams) |
 | **Rational Unified Process (RUP)** | Structured documentation and software design methodology |
-| **Java Swing** | GUI framework for desktop application |
+| **Java Swing** | GUI framework for desktop applications |
 | **MSSQL** | Database management and storage |
 | **Git/GitHub** | Version control and collaboration |
 
