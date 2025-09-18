@@ -32,7 +32,6 @@ The project began with careful documentation using **RUP templates**, followed b
 
 - Add, update, and delete shipments and clients  
 - Track the status of shipments over time  
-- Search and filter shipments and clients efficiently  
 - Generate simple reports for analysis and management  
 - Interactive GUI with forms, tables, and dialog windows  
 - Persistent storage in MSSQL  
