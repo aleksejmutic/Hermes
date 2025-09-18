@@ -12,7 +12,7 @@ During the development of Hermes, I gained practical experience in the structure
 
 # How Hermes was made
 
-The project began with careful documentation using **RUP templates**, followed by UML modeling in **SAP PowerDesigner** to create class, use case, and sequence diagrams. Once the models were validated, the implementation started using **Java Swing** for the GUI and **MSSQL** for persistent data storage.  
+The project began with careful documentation using **RUP templates**, followed by UML modeling in **SAP PowerDesigner** to create class, use case, and sequence diagrams, after which followed database modelling. Once the models were validated, the implementation started using **Java Swing** for the GUI and **MSSQL** for persistent data storage.  
 
 ---
 
