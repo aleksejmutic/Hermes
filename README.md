@@ -1,6 +1,6 @@
 # Hermes (Shipping Information System)
 
-Hermes is a desktop information system designed for managing shipments, clients, and logistics operations, developed in **Java Swing** with an **MSSQL** backend. The application allows users to manage shipping records, track parcels, and organize operations efficiently. This project was developed as part of the **Design of Information Systems** course during the 4th year at the Faculty of Electrical Engineering in East Sarajevo.  
+Hermes is a desktop information system designed for managing shipments, clients, and logistics operations, developed in **Java Swing** with **MSSQL**. The application allows users to manage shipping records, track parcels, and organize operations efficiently. This project was developed as part of the **Design of Information Systems** course during the 4th year at the Faculty of Electrical Engineering in East Sarajevo.  
 
 ---
 
